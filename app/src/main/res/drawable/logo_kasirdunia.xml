@@ -1,0 +1,89 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="60dp"
+    android:viewportWidth="200"
+    android:viewportHeight="60">
+    <!-- Background Pill -->
+    <path
+        android:fillColor="#0D8B96"
+        android:pathData="M16,6 L184,6 A14,14 0 0 1 198,20 L198,40 A14,14 0 0 1 184,54 L16,54 A14,14 0 0 1 2,40 L2,20 A14,14 0 0 1 16,6 Z" />
+    
+    <!-- Accent badge / corner ribbon -->
+    <path
+        android:fillColor="#FF9024"
+        android:pathData="M166,6 L184,6 A14,14 0 0 1 198,20 L198,30 L166,6 Z" />
+
+    <!-- Cash Register / POS Icon Badge -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M14,14 L46,14 A4,4 0 0 1 50,18 L50,42 A4,4 0 0 1 46,46 L14,46 A4,4 0 0 1 10,42 L10,18 A4,4 0 0 1 14,14 Z" />
+
+    <!-- Register Screen -->
+    <path
+        android:fillColor="#0D8B96"
+        android:pathData="M16,19 L44,19 L44,28 L16,28 Z" />
+
+    <!-- Screen glow bar -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,22 L36,22 L36,25 L18,25 Z" />
+
+    <!-- Register Keypad / Drawer -->
+    <path
+        android:fillColor="#0D8B96"
+        android:pathData="M16,32 L22,32 L22,35 L16,35 Z M26,32 L32,32 L32,35 L26,35 Z M36,32 L44,32 L44,35 L36,35 Z M16,38 L44,38 L44,42 L16,42 Z" />
+
+    <!-- Orange Drawer Button -->
+    <path
+        android:fillColor="#FF9024"
+        android:pathData="M28,39 L32,39 L32,41 L28,41 Z" />
+
+    <!-- Text: KASIR DUNIA (Vector paths for crisp presentation across devices) -->
+    <!-- K -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,20 L64,20 L64,27 L70,20 L75,20 L68,28 L76,38 L71,38 L64,29.5 L64,38 L60,38 Z" />
+    <!-- A -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M81,20 L86,20 L92,38 L87.5,38 L86.2,34 L80.8,34 L79.5,38 L75,38 Z M83.5,24 L81.8,30.5 L85.2,30.5 Z" />
+    <!-- S -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M95,21 C97,20 101,20 103,21.5 C104.5,22.8 104.5,25 103,26.5 C101,28 97,28.5 96,30 C95,31.5 96.5,33.5 99,34 C101.5,34 104,33 105,32 L106,35 C104,36.5 101,37.5 98,37 C94.5,36.5 92.5,33.5 93,30 C93.5,27 96.5,25.5 99.5,24.5 C101,24 101.5,23.2 101,22.5 C100.5,21.8 98,21.8 96,22.8 Z" />
+    <!-- I -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M109,20 L113,20 L113,38 L109,38 Z" />
+    <!-- R -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M117,20 L125,20 C128,20 130,22 130,25 C130,27.5 128.5,29 126,29.5 L131,38 L126.5,38 L122,30 L121,30 L121,38 L117,38 Z M121,23.5 L121,27 L124.5,27 C125.8,27 126.5,26.2 126.5,25.2 C126.5,24.2 125.8,23.5 124.5,23.5 Z" />
+
+    <!-- Subtitle: DUNIA in Sage/White -->
+    <!-- D -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M136,20 L142,20 C146.5,20 149.5,23 149.5,29 C149.5,35 146.5,38 142,38 L136,38 Z M139.5,23.5 L139.5,34.5 L142,34.5 C144.5,34.5 146,32.5 146,29 C146,25.5 144.5,23.5 142,23.5 Z" />
+    <!-- U -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M152,20 L155.5,20 L155.5,32 C155.5,34 156.8,35 158.8,35 C160.8,35 162,34 162,32 L162,20 L165.5,20 L165.5,32 C165.5,36 163,38 158.8,38 C154.5,38 152,36 152,32 Z" />
+    <!-- N -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M168,20 L171.5,20 L176.5,31 L176.5,20 L180,20 L180,38 L176.5,38 L171.5,27 L171.5,38 L168,38 Z" />
+    <!-- I -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M183,20 L186.5,20 L186.5,38 L183,38 Z" />
+    <!-- A -->
+    <path
+        android:fillColor="#B2C49A"
+        android:pathData="M190.5,20 L194,20 L198,38 L194.5,38 L193.5,34 L189.5,34 L188.5,38 L185,38 Z M191.5,24 L190.2,30.5 L192.8,30.5 Z" />
+
+    <!-- Sub-tagline: POS OFFLINE -->
+    <path
+        android:fillColor="#FF9024"
+        android:pathData="M60,42 L130,42 L130,43.5 L60,43.5 Z" />
+</vector>

@@ -1,0 +1,50 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:translateX="-10.8"
+        android:translateY="-10.8">
+        <!-- Cash register base shadow/accent -->
+        <path
+            android:fillColor="#FF9024"
+            android:pathData="M32,68 L76,68 A3,3 0 0 0 79,65 L79,63 L29,63 L29,65 A3,3 0 0 0 32,68 Z" />
+        <!-- Cash drawer button -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M51,64.5 L57,64.5 L57,66.5 L51,66.5 Z" />
+        <!-- Register Body -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,48 L78,48 L76,63 L32,63 Z" />
+        <!-- Keypad buttons on register -->
+        <path
+            android:fillColor="#B2C49A"
+            android:pathData="M36,52 L42,52 L42,55 L36,55 Z M46,52 L52,52 L52,55 L46,55 Z M56,52 L62,52 L62,55 L56,55 Z M66,52 L72,52 L72,55 L66,55 Z M36,57 L42,57 L42,60 L36,60 Z M46,57 L52,57 L52,60 L46,60 Z M56,57 L62,57 L62,60 L56,60 Z M66,57 L72,57 L72,60 L66,60 Z" />
+        <!-- Register Display Stand -->
+        <path
+            android:fillColor="#E0F2F1"
+            android:pathData="M35,32 L73,32 A2,2 0 0 1 75,34 L75,47 A1,1 0 0 1 74,48 L34,48 A1,1 0 0 1 33,47 L33,34 A2,2 0 0 1 35,32 Z" />
+        <!-- Display Screen -->
+        <path
+            android:fillColor="#0D8B96"
+            android:pathData="M37,35 L71,35 L71,45 L37,45 Z" />
+        <!-- Currency / Sales Bar on Screen -->
+        <path
+            android:fillColor="#B2C49A"
+            android:pathData="M40,38 L54,38 L54,42 L40,42 Z" />
+        <path
+            android:fillColor="#FF9024"
+            android:pathData="M58,38 L68,38 L68,42 L58,42 Z" />
+        <!-- Receipt printing out from top -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M49,24 L59,24 L59,32 L49,32 Z" />
+        <path
+            android:fillColor="#FF9024"
+            android:pathData="M51,26 L57,26 L57,27 L51,27 Z M51,28.5 L56,28.5 L56,29.5 L51,29.5 Z" />
+    </group>
+</vector>

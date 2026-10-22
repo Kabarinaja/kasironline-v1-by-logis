@@ -1,0 +1,6 @@
+{
+  "name": "KASIR DUNIA",
+  "description": "Aplikasi Kasir Offline Profesional untuk UMKM dan Bisnis",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

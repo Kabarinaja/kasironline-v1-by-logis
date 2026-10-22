@@ -1,0 +1,653 @@
+# PROJECT BRIEF: KASIR DUNIA — APLIKASI KASIR OFFLINE PROFESIONAL
+
+Bertindaklah sebagai Senior Software Engineer, Android Developer, UI/UX Designer, Database Architect, dan QA Engineer. Bangun sebuah aplikasi kasir profesional bernama **KASIR DUNIA** dari nol, dengan kode yang lengkap, terstruktur, siap diuji, dan dapat dikembangkan menjadi APK Android yang bisa dipasang di HP maupun tablet.
+
+## 1. KETENTUAN UTAMA PROYEK
+
+Buat proyek BARU bernama KASIR DUNIA.
+
+- Jangan melanjutkan, menyalin struktur proyek, atau mengubah repository KASIRASLI maupun Fast Cashier yang sudah ada.
+- Buat struktur kode baru yang bersih dan mudah dipelihara.
+- Aplikasi harus mengutamakan penggunaan offline.
+- Database transaksi, barang, pengguna, pengaturan, dan laporan disimpan secara lokal di perangkat masing-masing.
+- Seluruh fungsi kasir inti wajib berjalan tanpa internet.
+- Jangan membuat tombol yang hanya berupa dekorasi atau fitur palsu.
+- Semua tombol, formulir, navigasi, perhitungan, penyimpanan, pencetakan, dan ekspor harus mempunyai fungsi nyata.
+- Jangan mengganti logo resmi menggunakan gambar buatan AI, emoji, atau ikon sementara setelah logo resmi dipasang.
+- Jangan menghapus atau mereset data pengguna ketika aplikasi diperbarui.
+- Jangan meminta konfirmasi untuk setiap detail desain. Ambil keputusan teknis yang masuk akal dan implementasikan fitur secara lengkap.
+
+## 2. PLATFORM DAN TEKNOLOGI
+
+Bangun aplikasi Android dengan antarmuka responsif yang optimal di HP dan tablet.
+
+Arsitektur yang disarankan:
+- Android native menggunakan Kotlin.
+- Jetpack Compose untuk antarmuka responsif.
+- Room Database dengan SQLite sebagai database lokal utama.
+- DataStore untuk pengaturan aplikasi dan preferensi pengguna.
+- Android Keystore untuk membantu melindungi data autentikasi yang sensitif.
+- ZXing atau library QR Code yang sesuai untuk membuat dan membaca QR jika diperlukan.
+- Android Bluetooth API untuk menghubungkan printer thermal Bluetooth secara langsung.
+- Android Print Framework atau mekanisme ekspor PDF lokal untuk pembuatan laporan.
+- WorkManager hanya jika diperlukan untuk tugas latar belakang yang sesuai.
+
+Jika proyek menggunakan teknologi web di dalam Android WebView, pastikan seluruh data tetap tersimpan secara lokal dan gunakan mekanisme native Android untuk Bluetooth serta pencetakan. Jangan mengandalkan browser untuk fitur Bluetooth atau pencetakan yang tidak didukung.
+
+Pilih satu arsitektur utama yang konsisten. Jangan mencampur banyak teknologi tanpa alasan.
+
+Sertakan semua file konfigurasi build, Gradle Wrapper, manifest, resource, database, kode aplikasi, dan pengujian yang diperlukan. Pastikan proyek bisa dibangun menjadi APK debug tanpa layanan backend berbayar.
+
+## 3. IDENTITAS VISUAL DAN WARNA
+
+Nama aplikasi: KASIR DUNIA.
+
+Gunakan palet warna yang diberikan pengguna:
+- Toska: #0D8B96
+- Hijau sage: #B2C49A
+- Oranye: #FF9024
+- Abu-abu: #9E9E9E
+- Putih: #FFFFFF
+
+Aturan desain:
+- Gunakan toska sebagai warna utama.
+- Gunakan hijau sage untuk elemen pendukung.
+- Gunakan oranye untuk tombol aksi penting dan penanda yang relevan.
+- Gunakan abu-abu untuk teks sekunder dan elemen netral.
+- Gunakan putih untuk latar belakang utama atau permukaan kartu.
+- Terapkan kontras teks yang jelas dan aksesibilitas yang baik.
+- Hindari desain kartun, gradien berlebihan, dekorasi berlebihan, dan emoji sebagai ikon antarmuka.
+- Gunakan ikon profesional yang konsisten.
+- Buat tampilan modern, bersih, rapi, profesional, dan mudah digunakan dalam aktivitas kasir sehari-hari.
+
+### Responsivitas HP dan tablet
+- HP: navigasi ringkas, tombol transaksi mudah dijangkau, formulir tidak terlalu padat.
+- Tablet: manfaatkan layar lebar dengan sidebar dan panel transaksi berdampingan.
+- Mode landscape harus tetap nyaman.
+- Gunakan ukuran teks dan tombol yang mudah dibaca dan disentuh.
+- Pastikan dialog, tabel, keranjang, laporan, dan pengaturan tidak terpotong.
+- Jangan hanya memperbesar tampilan HP untuk mendapatkan tampilan tablet. Buat layout adaptif berdasarkan lebar layar.
+
+## 4. LOGO DAN IKON APLIKASI
+
+Logo resmi akan dimasukkan pengguna secara manual ke folder resource proyek.
+
+Siapkan struktur resource yang jelas:
+- Ikon launcher Android berada pada resource mipmap yang sesuai.
+- Logo untuk halaman aplikasi berada pada resource drawable atau lokasi aset yang konsisten.
+- Jika ada halaman web, logo website berada pada folder aset publik yang sesuai.
+- Sediakan dokumentasi bernama LOGO-GUIDE.md yang menjelaskan nama file, folder, ukuran yang direkomendasikan, dan cara mengganti logo tanpa mengubah logika aplikasi.
+
+Gunakan nama resource yang konsisten, misalnya:
+- ic_launcher untuk ikon aplikasi.
+- logo_kasirdunia untuk logo di dalam aplikasi.
+
+Jangan menghasilkan logo pengganti dengan AI. Sebelum file logo resmi tersedia, gunakan placeholder netral yang mudah diganti dan jangan menganggap placeholder sebagai logo final.
+
+Pastikan logo aplikasi dan logo di halaman internal dapat diganti secara manual oleh pemilik proyek tanpa mengubah fungsi kasir.
+
+## 5. KEAMANAN LOGIN OFFLINE
+
+Aplikasi tidak memerlukan server atau akun online untuk login.
+
+Ketika aplikasi pertama kali dibuka:
+1. Tampilkan halaman pembuatan PIN berupa enam digit angka.
+2. Pengguna memasukkan PIN enam digit.
+3. Minta konfirmasi PIN.
+4. Jika cocok, simpan informasi verifikasi PIN secara aman menggunakan mekanisme kriptografi yang sesuai.
+5. Jangan menyimpan PIN dalam bentuk teks biasa.
+6. Setelah berhasil, arahkan pengguna ke proses onboarding dan pengisian biodata.
+
+Pada pembukaan berikutnya:
+- Tampilkan halaman login PIN enam digit.
+- PIN yang salah tidak boleh membuka aplikasi.
+- Sediakan mekanisme ganti PIN setelah pengguna berhasil masuk.
+- Tambahkan konfirmasi PIN lama sebelum PIN diganti.
+- Tambahkan tombol keluar atau kunci aplikasi.
+- Hindari penguncian permanen karena kesalahan PIN; gunakan penundaan percobaan yang wajar.
+- Jelaskan secara jujur mekanisme pemulihan jika pengguna lupa PIN.
+
+Karena tidak ada server, jelaskan bahwa autentikasi ini bersifat lokal pada perangkat, bukan sistem akun terpusat. PIN tidak menjamin perlindungan terhadap semua bentuk akses fisik atau perangkat yang sudah di-root.
+
+## 6. ONBOARDING DAN BIODATA USAHA
+
+Setelah pembuatan PIN berhasil, tampilkan wizard pengaturan awal.
+
+Data pemilik dan usaha:
+- Nama lengkap pemilik.
+- Nama usaha.
+- Jenis usaha.
+- Alamat lengkap usaha.
+- Kota dan provinsi.
+- Nomor telepon usaha.
+- Email usaha, jika ada.
+- Nama pemilik atau penanggung jawab.
+- Logo usaha.
+- Mata uang, default IDR.
+- Zona waktu.
+- Bahasa aplikasi.
+- Pengaturan printer.
+- Pengaturan format struk.
+
+Semua data disimpan lokal dan dapat diedit di menu Pengaturan.
+
+Jika onboarding sudah selesai, jangan menampilkannya lagi kecuali pengguna memilih reset konfigurasi melalui mekanisme yang jelas dan aman.
+
+## 7. DASHBOARD UTAMA
+
+Buat dashboard dengan:
+- Total penjualan hari ini.
+- Jumlah transaksi hari ini.
+- Total tunai.
+- Total QRIS.
+- Jumlah produk aktif.
+- Produk terlaris.
+- Ringkasan stok menipis.
+- Transaksi terakhir.
+- Tombol mulai transaksi.
+- Tombol buka dan tutup sesi kasir.
+- Status sesi kasir yang sedang berjalan.
+
+Nilai dashboard harus dihitung dari database lokal, bukan data contoh statis.
+
+Jika belum ada transaksi, tampilkan kondisi kosong yang jelas dan petunjuk penggunaan.
+
+## 8. MANAJEMEN PRODUK
+
+Fitur wajib:
+- Tambah produk.
+- Edit produk.
+- Hapus produk dengan konfirmasi.
+- Pencarian produk.
+- Kategori produk.
+- SKU atau kode barang.
+- Barcode produk.
+- Nama produk.
+- Harga modal opsional.
+- Harga jual.
+- Stok.
+- Satuan.
+- Foto produk opsional.
+- Batas stok minimum.
+- Status aktif/nonaktif.
+- Pengurutan dan filter produk.
+- Impor dan ekspor produk melalui CSV jika memungkinkan.
+- Dukungan pemindai barcode yang kompatibel.
+
+Ketentuan:
+- Produk dapat dipilih untuk masuk ke keranjang.
+- Harga dan stok harus divalidasi.
+- Stok tidak boleh berubah akibat sekadar membuka atau melihat produk.
+- Perubahan stok karena transaksi harus konsisten dan atomik.
+- Produk yang sudah mempunyai riwayat transaksi tidak boleh menghilangkan riwayat tersebut saat dinonaktifkan atau dihapus. Gunakan soft delete jika diperlukan.
+
+## 9. TRANSAKSI KASIR
+
+Buat halaman transaksi yang cepat digunakan.
+
+Fitur:
+- Cari produk berdasarkan nama, SKU, atau barcode.
+- Tambah produk ke keranjang.
+- Tambah dan kurangi jumlah.
+- Hapus produk dari keranjang.
+- Harga dan subtotal setiap item.
+- Diskon per item dan diskon transaksi.
+- Pajak opsional jika diaktifkan pengguna.
+- Catatan transaksi.
+- Total akhir yang jelas.
+- Input uang yang diterima.
+- Hitung uang kembalian otomatis.
+- Validasi pembayaran agar tidak terjadi nilai negatif atau pembayaran kurang.
+- Konfirmasi sebelum transaksi diselesaikan.
+- Simpan transaksi secara konsisten ke database lokal.
+- Cetak struk setelah transaksi.
+- Tampilkan detail transaksi setelah selesai.
+
+Buat nomor transaksi unik yang tidak bergantung pada koneksi internet.
+
+Simpan snapshot nama produk, SKU, harga jual, kuantitas, diskon, dan subtotal ketika transaksi dilakukan agar riwayat lama tetap akurat meskipun informasi produk berubah.
+
+## 10. PEMBAYARAN TUNAI DAN QRIS
+
+Sediakan dua metode pembayaran utama:
+1. TUNAI.
+2. QRIS.
+
+### TUNAI
+- Masukkan uang yang diterima.
+- Hitung uang kembalian otomatis.
+- Simpan jumlah uang diterima dan jumlah kembalian.
+- Tampilkan informasi pembayaran di struk.
+
+### QRIS
+- Sediakan label pembayaran QRIS.
+- Izinkan pengguna mengunggah gambar QRIS resmi milik usahanya.
+- Simpan gambar secara lokal.
+- Tampilkan QRIS di halaman pembayaran jika diperlukan.
+- Sediakan opsi memasukkan referensi pembayaran.
+- Status pembayaran harus dapat ditentukan dan diverifikasi oleh kasir.
+
+Penting:
+- Jangan mengklaim aplikasi telah menerima atau memverifikasi pembayaran QRIS secara otomatis jika tidak terhubung ke penyedia pembayaran.
+- QRIS yang diunggah merupakan gambar untuk pembayaran, bukan sistem payment gateway.
+- QR Code QRIS dapat bersifat statis atau dinamis tergantung QR yang digunakan. Jangan mengubah isi QR atau menganggap semua QRIS dapat menerima nominal otomatis.
+- Pembayaran QRIS sebaiknya ditandai lunas setelah kasir memastikan pembayaran benar-benar diterima.
+- Simpan metode pembayaran, nominal, status, dan referensi transaksi.
+
+Laporan harus memisahkan transaksi TUNAI dan QRIS serta menampilkan total gabungan.
+
+## 11. MANAJEMEN KASIR DAN CREW
+
+Buat menu Crew atau Manajemen Kasir.
+
+Data setiap crew:
+- Nama.
+- Jabatan.
+- Nomor telepon opsional.
+- Status aktif/nonaktif.
+- Catatan opsional.
+
+Contoh:
+- Denis — Karyawan.
+- Logis Denis Prabowo — Owner.
+- Crew tambahan sesuai kebutuhan.
+
+Ketentuan:
+- Bisa menambahkan lebih dari satu kasir.
+- Bisa mengedit, menonaktifkan, dan menghapus crew dengan aturan yang menjaga riwayat transaksi.
+- Sediakan dropdown pilihan kasir sebelum sesi transaksi dimulai.
+- Kasir yang dipilih harus tercatat dalam setiap transaksi.
+- Tampilkan nama dan jabatan pada struk, misalnya: Kasir: Denis (Karyawan).
+- Jangan menggunakan satu nama kasir yang di-hardcode.
+- Riwayat transaksi harus menyimpan snapshot nama kasir dan jabatan saat transaksi berlangsung.
+
+## 12. SESI KASIR DAN UANG LACI
+
+Sebelum mulai berjualan, sediakan fitur Buka Sesi Kasir.
+
+Data yang dimasukkan:
+- Kasir yang bertugas.
+- Tanggal dan waktu pembukaan.
+- Uang awal atau modal laci.
+- Catatan pembukaan.
+
+Selama sesi berjalan:
+- Catat transaksi tunai.
+- Catat transaksi QRIS.
+- Sediakan pencatatan pemasukan dan pengeluaran laci secara terpisah.
+- Sediakan alasan dan catatan untuk setiap pergerakan uang.
+- Jangan menganggap transaksi QRIS sebagai uang tunai di laci.
+
+Saat tutup sesi:
+- Tampilkan uang awal.
+- Total penjualan tunai.
+- Total penjualan QRIS.
+- Pengeluaran tunai.
+- Pemasukan tambahan.
+- Perkiraan uang tunai di laci.
+- Uang tunai aktual hasil hitung kasir.
+- Selisih kas.
+- Catatan penutupan.
+
+Rumus perkiraan uang tunai di laci harus jelas, misalnya:
+
+Uang awal + penjualan tunai + pemasukan tunai lainnya - pengeluaran tunai - pengembalian tunai.
+
+Jangan memasukkan penjualan QRIS ke perhitungan uang fisik di laci.
+
+Simpan riwayat buka dan tutup sesi kasir untuk audit.
+
+## 13. RIWAYAT TRANSAKSI
+
+Fitur:
+- Daftar transaksi.
+- Pencarian berdasarkan nomor transaksi.
+- Filter tanggal.
+- Filter kasir.
+- Filter metode pembayaran.
+- Filter status transaksi.
+- Lihat detail transaksi.
+- Lihat rincian produk dan jumlah.
+- Lihat diskon dan total.
+- Lihat uang diterima dan kembalian untuk tunai.
+- Lihat referensi pembayaran untuk QRIS.
+- Cetak ulang struk.
+- Batalkan transaksi menggunakan prosedur yang aman.
+- Catat alasan pembatalan.
+- Perbaiki stok secara konsisten saat transaksi dibatalkan.
+- Simpan jejak audit pembatalan.
+
+Jangan menghapus transaksi secara diam-diam. Riwayat lama harus tetap dapat diperiksa.
+
+## 14. PENGATURAN STRUK
+
+Buat menu khusus untuk mengatur struk.
+
+Ukuran kertas yang didukung:
+- 58 mm.
+- 80 mm.
+- 102 mm.
+- Ukuran kustom jika memungkinkan.
+
+Pengaturan:
+- Nama usaha.
+- Logo.
+- Alamat.
+- Nomor telepon.
+- Nomor transaksi.
+- Tanggal dan waktu.
+- Nama kasir dan jabatan.
+- Daftar produk.
+- Jumlah barang.
+- Harga satuan.
+- Diskon.
+- Subtotal.
+- Total pembayaran.
+- Metode pembayaran.
+- Uang diterima.
+- Uang kembalian.
+- Catatan atau pesan footer.
+- QR Code promosi atau QR website.
+- Opsi menampilkan atau menyembunyikan elemen tertentu.
+- Ukuran teks.
+- Perataan teks.
+- Jarak antarbagian.
+- Pratinjau struk sebelum dicetak.
+
+Pengguna dapat menulis pesan footer sendiri, misalnya informasi promosi, ucapan terima kasih, atau ajakan berkunjung.
+
+Sediakan dua jenis QR yang terpisah:
+1. QRIS untuk pembayaran.
+2. QR promosi, website, atau informasi lain.
+
+Jangan mencampur kedua fungsi QR tersebut.
+
+Untuk QR promosi:
+- Pengguna dapat mengunggah gambar QR Code.
+- Simpan gambar secara lokal.
+- Tampilkan gambar di bagian bawah struk.
+- Sediakan pesan khusus di bawah gambar.
+- Pertahankan proporsi gambar dan tingkat keterbacaan QR.
+- Berikan pratinjau sebelum cetak.
+
+Pastikan hasil cetak menggunakan ukuran kertas yang benar dan tidak memotong bagian penting.
+
+## 15. PRINTER THERMAL BLUETOOTH
+
+Buat fitur pengaturan printer yang benar-benar terintegrasi dengan Android.
+
+Fitur:
+- Meminta izin Bluetooth sesuai versi Android.
+- Menampilkan perangkat Bluetooth yang tersedia dan sudah dipasangkan.
+- Menghubungkan printer.
+- Memutuskan koneksi.
+- Menampilkan status koneksi.
+- Menyimpan printer pilihan.
+- Tombol cetak uji.
+- Pengaturan ukuran kertas.
+- Pengaturan margin, ukuran font, dan lebar cetak.
+- Pengaturan kualitas gambar dan QR.
+- Pencetakan struk.
+- Cetak ulang transaksi.
+- Penanganan koneksi terputus.
+- Pesan error yang dapat dipahami pengguna.
+
+Prioritaskan printer thermal Bluetooth yang mendukung ESC/POS melalui koneksi Bluetooth Classic SPP.
+
+Jangan menjanjikan kompatibilitas universal. Sebagian printer menggunakan protokol khusus atau Bluetooth BLE dan memerlukan implementasi berbeda.
+
+Implementasikan:
+- Koneksi dan komunikasi printer melalui API native Android.
+- Pemformatan teks.
+- Pemotongan teks sesuai lebar kertas.
+- Dukungan karakter Bahasa Indonesia.
+- Pencetakan gambar logo.
+- Pencetakan QR Code.
+- Pengaturan lebar cetak berdasarkan kertas yang dipilih.
+- Mekanisme antrean cetak agar data tidak tercampur.
+- Timeout, penanganan kegagalan, dan pelepasan koneksi yang benar.
+
+Jika perangkat printer tidak tersedia, aplikasi tetap harus dapat digunakan dan memberikan pesan yang jelas bahwa pencetakan belum dapat dilakukan.
+
+## 16. LAPORAN PENJUALAN
+
+Buat laporan berdasarkan data asli dalam database lokal.
+
+Pilihan rentang:
+- Hari ini.
+- Kemarin.
+- Tujuh hari terakhir.
+- Bulan ini.
+- Rentang tanggal kustom.
+
+Laporan wajib:
+- Total penjualan.
+- Jumlah transaksi.
+- Total pembayaran TUNAI.
+- Total pembayaran QRIS.
+- Total gabungan.
+- Total diskon.
+- Total pengembalian atau pembatalan.
+- Produk terlaris berdasarkan jumlah unit terjual.
+- Produk terlaris berdasarkan nilai penjualan.
+- Rincian transaksi.
+- Penjualan per kasir.
+- Ringkasan sesi kasir.
+- Stok dan nilai persediaan jika data harga modal tersedia.
+
+Laporan pembayaran harus memisahkan TUNAI dan QRIS dengan jelas. Jangan menjumlahkan pembayaran QRIS sebagai uang tunai.
+
+### Ekspor PDF
+- Buat PDF dengan layout profesional.
+- Sertakan nama usaha, logo, periode laporan, waktu pembuatan, ringkasan, tabel, dan total.
+- Pisahkan laporan tunai dan QRIS serta tampilkan total gabungan.
+- Sertakan daftar produk terlaris.
+- Sediakan pratinjau dan opsi berbagi atau menyimpan file.
+- Gunakan penyimpanan Android yang sesuai.
+
+Pembuatan laporan PDF dari data lokal harus dapat dilakukan OFFLINE. Jangan mensyaratkan koneksi internet hanya untuk menghasilkan PDF. Internet hanya boleh dibutuhkan jika pengguna memilih fitur berbagi atau layanan eksternal yang memang memerlukannya.
+
+## 17. MANAJEMEN STOK
+
+Fitur:
+- Stok bertambah dan berkurang.
+- Penyesuaian stok manual.
+- Catatan alasan perubahan stok.
+- Riwayat pergerakan stok.
+- Peringatan stok minimum.
+- Laporan stok menipis.
+- Penghitungan stok awal.
+- Validasi stok negatif.
+- Pengembalian barang dan koreksi stok melalui prosedur yang tercatat.
+
+## 18. BACKUP DAN RESTORE OFFLINE
+
+Buat menu Backup & Restore.
+
+Fitur:
+- Ekspor semua data ke file backup lokal.
+- Impor file backup.
+- Validasi struktur dan versi backup.
+- Konfirmasi sebelum pemulihan data.
+- Peringatan jika pemulihan akan mengganti atau menggabungkan data.
+- Penanganan file rusak.
+- Backup meliputi produk, kategori, transaksi, detail transaksi, crew, sesi kasir, pengaturan, dan aset yang relevan.
+- Gunakan format yang aman dan terdokumentasi.
+
+Backup harus bisa dipindahkan secara manual ke HP atau tablet lain tanpa server.
+
+Jangan mengklaim sinkronisasi otomatis antarperangkat karena database setiap perangkat berdiri sendiri.
+
+Sediakan fitur ekspor dan impor CSV untuk produk jika memungkinkan.
+
+## 19. PENGATURAN BAHASA INDONESIA DAN INGGRIS
+
+Sediakan pilihan:
+- Bahasa Indonesia.
+- English.
+
+Default pertama kali: Bahasa Indonesia.
+
+Ketika bahasa diubah:
+- Semua menu.
+- Tombol.
+- Label.
+- Dialog.
+- Pesan error.
+- Notifikasi.
+- Status.
+- Formulir.
+- Pengaturan.
+- Laporan.
+- Bantuan.
+- Petunjuk onboarding.
+
+Semuanya harus berubah ke bahasa yang dipilih.
+
+Jangan hanya menerjemahkan menu utama. Gunakan sistem resource string atau sistem lokalisasi terpusat yang benar.
+
+Pilihan bahasa disimpan secara lokal dan tetap digunakan setelah aplikasi ditutup atau perangkat dimulai ulang.
+
+Nama produk, nama usaha, nama orang, alamat, dan catatan buatan pengguna tidak boleh diterjemahkan secara otomatis.
+
+## 20. TENTANG APLIKASI
+
+Buat halaman Tentang Aplikasi dengan bahasa profesional.
+
+Gunakan deskripsi berikut:
+
+**KASIR DUNIA — Aplikasi Kasir Offline**
+
+KASIR DUNIA merupakan aplikasi kasir yang dirancang untuk membantu pelaku usaha mengelola transaksi penjualan, produk, persediaan, laporan, serta pencatatan kas secara praktis melalui perangkat Android.
+
+Aplikasi ini mengutamakan penggunaan offline dengan penyimpanan data lokal pada perangkat pengguna. Fitur yang tersedia meliputi pengelolaan produk, transaksi tunai dan QRIS, laporan penjualan, pengaturan struk, dukungan printer thermal yang kompatibel, serta pencadangan dan pemulihan data.
+
+**Pengembang**
+
+Aplikasi ini dikembangkan oleh **Logis Denis Prabowo** dengan dukungan teknologi kecerdasan buatan (AI) dalam proses perancangan dan pengembangan. Pengembangan dilakukan dengan tujuan menyediakan solusi kasir yang praktis, mudah digunakan, dan dapat diakses oleh pelaku usaha.
+
+**Kontak pengembang**
+- Email: kasirdunia.com@gmail.com
+- WhatsApp: 0823-7947-4173
+- Nama kontak: Logis Denis Prabowo
+
+Tambahkan informasi:
+
+“Untuk pertanyaan, masukan, laporan kendala, atau informasi mengenai pembaruan aplikasi, silakan menghubungi pengembang melalui kontak di atas.”
+
+Jangan membuat klaim palsu tentang sertifikasi, kepemilikan perusahaan, keamanan yang tidak diterapkan, atau fitur yang belum tersedia.
+
+## 21. PENGATURAN DAN PEMELIHARAAN DATA
+
+Sediakan:
+- Pengaturan usaha.
+- Pengaturan printer.
+- Pengaturan struk.
+- Pengaturan bahasa.
+- Pengaturan PIN.
+- Pengaturan crew.
+- Pengaturan sesi kasir.
+- Backup dan restore.
+- Informasi versi aplikasi.
+- Informasi penggunaan penyimpanan jika memungkinkan.
+- Reset data dengan konfirmasi berlapis.
+
+Jangan menyediakan reset yang mudah terpencet tanpa peringatan.
+
+Sediakan mekanisme migrasi database agar pembaruan versi aplikasi tidak menghilangkan data pengguna.
+
+## 22. PRIVASI DAN KETAHANAN OFFLINE
+
+Aplikasi tidak boleh:
+- Mengirim transaksi ke server tanpa persetujuan.
+- Mengirim PIN atau data pribadi ke layanan AI.
+- Mengandalkan koneksi internet untuk login lokal.
+- Memuat aset antarmuka penting dari CDN internet.
+- Kehilangan data hanya karena jaringan terputus.
+- Menampilkan data contoh sebagai transaksi asli.
+- Mengklaim data otomatis tersinkron antarperangkat.
+
+Semua aset inti harus disertakan dalam APK.
+
+Pastikan operasi database menggunakan transaksi yang benar untuk menjaga konsistensi data.
+
+## 23. PENGUJIAN WAJIB
+
+Buat dan jalankan pengujian untuk:
+- Pembuatan PIN dan login.
+- Penyimpanan biodata.
+- Tambah, edit, dan hapus produk.
+- Perhitungan subtotal dan total.
+- Perhitungan diskon.
+- Pembayaran tunai dan kembalian.
+- Pembayaran QRIS.
+- Pengurangan dan pemulihan stok.
+- Pemilihan kasir.
+- Buka dan tutup sesi kasir.
+- Perhitungan uang laci.
+- Pembuatan nomor transaksi.
+- Pembuatan laporan.
+- Ekspor PDF.
+- Backup dan restore.
+- Perubahan bahasa.
+- Migrasi database.
+- Pemformatan struk 58 mm, 80 mm, dan 102 mm.
+- Pencetakan QR Code.
+- Penanganan printer terputus.
+- Tampilan HP dan tablet dalam mode portrait dan landscape.
+- Penggunaan inti tanpa koneksi internet.
+
+Jika printer fisik tidak tersedia untuk pengujian, buat pengujian format data cetak dan dokumentasikan bahwa pengujian perangkat nyata masih diperlukan.
+
+## 24. HASIL AKHIR YANG WAJIB DIBUAT
+
+Jangan berhenti hanya pada desain UI, mockup, prototipe, atau kode contoh.
+
+Bangun proyek yang benar-benar dapat dijalankan dengan:
+1. Seluruh kode sumber.
+2. Struktur proyek Android lengkap.
+3. Database lokal dan migrasi.
+4. Seluruh layar dan navigasi.
+5. Semua fitur inti yang berfungsi.
+6. Pengaturan printer dan struk.
+7. Pembayaran tunai dan QRIS.
+8. Laporan dan ekspor PDF.
+9. Backup dan restore.
+10. Sistem lokalisasi Bahasa Indonesia dan Inggris.
+11. Panduan mengganti logo.
+12. README.md berisi cara membuka, membangun, menguji, dan memasang APK.
+13. Gradle Wrapper.
+14. Skrip atau instruksi build yang benar.
+15. APK debug jika lingkungan pengembangan mendukung proses build.
+
+Pastikan semua dependensi memiliki versi yang kompatibel. Gunakan JDK yang sesuai dengan versi Android Gradle Plugin. Jangan mengandalkan JDK yang tidak didukung.
+
+Jika ada fitur yang tidak dapat diselesaikan karena keterbatasan lingkungan, jelaskan secara spesifik, tetapi tetap implementasikan bagian yang dapat dikerjakan. Jangan mengklaim build berhasil jika belum benar-benar berhasil.
+
+## 25. URUTAN IMPLEMENTASI
+
+Kerjakan secara bertahap dan terstruktur:
+
+Tahap 1: Buat struktur proyek dan konfigurasi build yang valid.
+
+Tahap 2: Buat tema, navigasi, layout responsif HP dan tablet.
+
+Tahap 3: Buat login PIN, onboarding, dan pengaturan usaha.
+
+Tahap 4: Buat database lokal, produk, crew, sesi kasir, dan stok.
+
+Tahap 5: Buat transaksi, pembayaran tunai dan QRIS, serta riwayat.
+
+Tahap 6: Buat pengaturan struk dan integrasi printer Bluetooth.
+
+Tahap 7: Buat laporan, PDF, backup, dan restore.
+
+Tahap 8: Terapkan seluruh terjemahan Bahasa Indonesia dan Inggris.
+
+Tahap 9: Buat halaman Tentang Aplikasi dan panduan logo.
+
+Tahap 10: Jalankan build dan pengujian, perbaiki error yang ditemukan, lalu dokumentasikan hasilnya.
+
+Mulailah dengan memeriksa kemampuan lingkungan kerja dan membuat proyek KASIR DUNIA yang baru. Setelah itu, implementasikan kode secara nyata, bukan hanya menjelaskan rencana.
+
+**Prioritas tertinggi: stabilitas transaksi, data lokal yang aman, penggunaan offline, desain responsif HP/tablet, kompatibilitas printer thermal, dan tidak kehilangan data ketika aplikasi diperbarui.**
